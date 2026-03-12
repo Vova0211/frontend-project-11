@@ -8,8 +8,9 @@
     "build": "vite build",
     "preview": "vite preview"
   },
-    "dependencies": {
+  "dependencies": {
     "bootstrap": "^5.3.8",
+    "i18next": "^25.8.18",
     "yup": "^1.7.1"
   },
   "devDependencies": {
