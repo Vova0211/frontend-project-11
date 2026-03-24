@@ -1,9 +1,10 @@
-import {setLocale, string} from 'yup'
+import { setLocale, string } from 'yup'
 import i18next from 'i18next'
 import axios from 'axios'
 
 import resources from './locales/index.js'
 import locale from './locales/locale.js'
+import { v4 as uuidv4 } from 'uuid';
 import watcher from './watchers.js'
 import parse from './rss.js'
 
@@ -35,14 +36,19 @@ function getLoadProcessError(error) {
 }
 
 function loadRSS(state, url) {
-  console.log(1)
   const urlWithProxy = addProxy(url)
   axios.get(urlWithProxy)
     .then(resp => {
-      const data = parse(resp.data.contents)
-      
+      const { feedDesc, items } = parse(resp.data.contents)
+      const feed = { url, id: uuidv4(), ...feedDesc }
+      state.feeds.push(feed)
+      state.posts.push(...items)
 
-      // state.feeds.push()
+      state.loadingProcess = {
+        ...state.loadingProcess,
+        status: 'idle',
+        error: null,
+      }
     })
     .catch(e => {
       state.loadingProcess = {
@@ -60,8 +66,19 @@ export default function () {
     form: document.querySelector('.rss-form'),
     input: document.querySelector('#url-input'),
     formFeedback: document.querySelector('.feedback'),
-    feeds: document.querySelector('.feeds'),
-    posts: document.querySelector('.posts')
+    feedsBox: document.querySelector('.feeds'),
+    postsBox: document.querySelector('.posts'),
+    submit: document.querySelector('button[type="submit"]'),
+    templates: {
+      posts: {
+        box: document.getElementById('postsBox'),
+        item: document.getElementById('postItem')
+      },
+      feeds: {
+        box: document.getElementById('feedsBox'),
+        item: document.getElementById('feedItem')
+      },
+    },
   }
   const initState = {
     feeds: [],
@@ -87,6 +104,7 @@ export default function () {
       event.preventDefault()
       const data = new FormData(event.target);
       const url = data.get('url');
+      state.loadingProcess.status = 'loading'
 
       validateUrl(url, state.feeds)
        .then(err => {

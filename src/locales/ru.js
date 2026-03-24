@@ -1,5 +1,7 @@
 export default {
   translation: {
+    feeds: "Фиды",
+    posts: "Посты",
     loading: {
       success: 'RSS успешно загружен',
     },

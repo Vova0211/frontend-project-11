@@ -14,8 +14,10 @@ export default function (data) {
   })
 
   return {
-    title: feedTitle,
-    description: feedDescr,
+    feed: { 
+      title: feedTitle,
+      description: feedDescr,
+    },
     items
   }
 }
