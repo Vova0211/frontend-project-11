@@ -8,19 +8,19 @@
     <title>RSS agregator</title>
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"></h5>
+                    <h5 class="modal-title" id="modalLabel"></h5>
                     <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-break"></div>
                 <div class="modal-footer">
-                    <a class="btn btn-primary full-article" href="#" role="button" target="_blank" rel="noopener noreferrer">
+                    <a class="btn btn-primary full-article" href="#">
                         Читать полностью
                     </a>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Закрыть</button>
                 </div>
             </div>
         </div>
@@ -91,7 +91,7 @@
 
 <template id="postItem">
     <li class="post list-group-item d-flex justify-content-between align-items-start border-0 border-end-0">
-        <a href="" class="postLink" target="_blank" rel="noopener noreferrer"></a>
+        <a href="" class="postLink"></a>
         <button type="button" class="postView btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal"></button>
     </li>
 </template>

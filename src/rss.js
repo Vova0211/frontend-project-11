@@ -1,12 +1,12 @@
 export default function (data) {
   const parser = new DOMParser()
   const dom = parser.parseFromString(data, 'text/xml')
-  
+
   const feedTitle = dom.querySelector('channel > title').textContent
   const feedDescr = dom.querySelector('channel > description').textContent
 
   const itemsElements = dom.querySelectorAll('channel > item')
-  const items = [...itemsElements].map(item => {
+  const items = [...itemsElements].map((item) => {
     const title = item.querySelector('title').textContent
     const description = item.querySelector('description').textContent
     const link = item.querySelector('link').textContent
@@ -14,10 +14,10 @@ export default function (data) {
   })
 
   return {
-    feed: { 
+    feed: {
       title: feedTitle,
       description: feedDescr,
     },
-    items
+    items,
   }
 }

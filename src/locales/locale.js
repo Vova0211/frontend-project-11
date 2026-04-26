@@ -1,8 +1,9 @@
 export default {
-    mixed: {
-        required: 'notEmpty',
-    },
-    string: {
-        url: 'notURL',
-    }
+  mixed: {
+    required: 'notEmpty',
+    notOneOf: 'exists'
+  },
+  string: {
+    url: 'notURL',
+  },
 }
