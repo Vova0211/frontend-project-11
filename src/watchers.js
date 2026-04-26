@@ -107,8 +107,8 @@ export default function (initState, elements, i18next) {
 
       postView.textContent = i18next.t('view')
       postView.dataset.id = id
-      postView.dataset.bsToggle = 'modal';
-      postView.dataset.bsTarget = '#modal';
+      postView.dataset.bsToggle = 'modal'
+      postView.dataset.bsTarget = '#modal'
       postView.addEventListener('click', () => {
         modal.postId = id
         ui.seenPosts.add(id)

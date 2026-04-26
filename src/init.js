@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 import watcher from './watchers.js'
 import parse from './rss.js'
 
-const fetchingTimeout = 5000;
+const fetchingTimeout = 5000
 
 function validateUrl(url, feeds) {
   setLocale(locale)
@@ -40,18 +40,18 @@ function getLoadProcessError(error) {
 
 function fetchNewPosts(state) {
   const { feeds, posts } = state
-  const promises = feeds.map(feed => {
+  const promises = feeds.map((feed) => {
     const url = addProxy(feed.url)
     return axios.get(url)
-    .then(answer => {
-      const { feed: feedDesc, items } = parse(answer.data.contents)
-      const newPosts = items.map(post => ({ ...post, channelId: feed.id }))
-      const oldPosts = posts.filter((post) => post.channelId === feed.id);
-      const filtredPosts = differenceWith(newPosts, oldPosts, (p1, p2) => p1.title === p2.title)
-        .map(post => ({ ...post, id: uuidv4() }))
-      
-      posts.unshift(...filtredPosts)
-    }).catch(error => error)
+      .then((answer) => {
+        const { items } = parse(answer.data.contents)
+        const newPosts = items.map(post => ({ ...post, channelId: feed.id }))
+        const oldPosts = posts.filter(post => post.channelId === feed.id)
+        const filtredPosts = differenceWith(newPosts, oldPosts, (p1, p2) => p1.title === p2.title)
+          .map(post => ({ ...post, id: uuidv4() }))
+
+        posts.unshift(...filtredPosts)
+      }).catch(error => error)
   })
   Promise.all(promises).finally(() => {
     setTimeout(() => fetchNewPosts(state), fetchingTimeout)
@@ -155,7 +155,7 @@ export default function () {
             }
           })
       })
-      setTimeout(() => fetchNewPosts(state), fetchingTimeout);
+      setTimeout(() => fetchNewPosts(state), fetchingTimeout)
     })
 
   return promise
