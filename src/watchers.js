@@ -99,7 +99,7 @@ export default function (initState, elements, i18next) {
       const element = item.content.cloneNode(true)
       const [postLink, postView] = getElementsByClasses(element, ['postLink', 'postView'])
 
-      const classes = ui.seenPosts.has(id) ? ['fw-normal', 'text-muted'] : ['fw-bold']
+      const classes = ui.seenPosts.has(id) ? ['fw-normal', 'link-secondary'] : ['fw-bold']
       postLink.classList.add(...classes)
       postLink.textContent = title
       postLink.href = link
