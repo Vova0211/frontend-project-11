@@ -12,7 +12,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalLabel"></h5>
+                    <h5 class="modal-title" id="modalLabel" role="dialog">Base title</h5>
                     <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-break"></div>
@@ -67,32 +67,17 @@
 <template id="feedsBox">
     <div class="card border-0">
         <div class="card-body">
-            <h2 class="feedsTitle card-title h4"></h2>
+            <h2 class="feedsTitle card-title h4">Base title</h2>
         </div>
         <ul class="feedsList list-group border-0 rounded-0"></ul>
     </div>
 </template>
-
-<template id="feedItem">
-    <li class="feed list-group-item border-0 border-end-0">
-        <h3 class="feedTitle h6 m-0"></h3>
-        <p class="feedDescr m-0 small text-black-50"></p>
-    </li>
-</template>
-
 <template id="postsBox">
     <div class="card border-0">
         <div class="card-body">
-            <h2 class="postsTitle card-title h4"></h2>
+            <h2 class="postsTitle card-title h4">Base title</h2>
         </div>
         <ul class="postsList list-group border-0 rounded-0"></ul>
     </div>
-</template>
-
-<template id="postItem">
-    <li class="post list-group-item d-flex justify-content-between align-items-start border-0 border-end-0">
-        <a href="" class="postLink"></a>
-        <button type="button" class="postView btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal"></button>
-    </li>
 </template>
 </html>

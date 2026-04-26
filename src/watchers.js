@@ -9,6 +9,22 @@ function getElementsByClasses(container, elementsClasses) {
   }, [])
 }
 
+function feedItem() {
+  const el = document.createElement('li')
+  el.classList.add('feed', 'list-group-item', 'border-0', 'border-end-0')
+  el.innerHTML = `<h3 class="feedTitle h6 m-0"></h3>
+<p class="feedDescr m-0 small text-black-50"></p>`
+  return el
+}
+
+function postItem() {
+  const el = document.createElement('li')
+  el.classList.add('post', 'list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0')
+  el.innerHTML = `<a href="" class="postLink"></a>
+<button type="button" class="postView btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal"></button>`
+  return el
+}
+
 export default function (initState, elements, i18next) {
   function formHandler(state) {
     const { form: { error, valid } } = state
@@ -58,7 +74,7 @@ export default function (initState, elements, i18next) {
 
   function feedsHandler(state) {
     const { feeds } = state
-    const { feedsBox, templates: { feeds: { box, item } } } = elements
+    const { feedsBox, templates: { feeds: { box } } } = elements
     if (feeds.length === 0) return
 
     const fBox = box.content.cloneNode(true)
@@ -69,7 +85,7 @@ export default function (initState, elements, i18next) {
     const feedsItems = reversedFeeds.map((feed) => {
       const { title, description } = feed
 
-      const element = item.content.cloneNode(true)
+      const element = feedItem()
       const [feedTitle, feedDescr] = getElementsByClasses(element, ['feedTitle', 'feedDescr'])
 
       feedTitle.textContent = title
@@ -85,7 +101,7 @@ export default function (initState, elements, i18next) {
 
   function postsHandler(state) {
     const { posts, modal, ui } = state
-    const { postsBox, templates: { posts: { box, item } } } = elements
+    const { postsBox, templates: { posts: { box } } } = elements
     postsBox.innerHTML = ''
 
     if (posts.length === 0) return
@@ -96,7 +112,7 @@ export default function (initState, elements, i18next) {
     const postsItems = posts.map((post) => {
       const { id, title, link } = post
 
-      const element = item.content.cloneNode(true)
+      const element = postItem()
       const [postLink, postView] = getElementsByClasses(element, ['postLink', 'postView'])
 
       const classes = ui.seenPosts.has(id) ? ['fw-normal', 'link-secondary'] : ['fw-bold']

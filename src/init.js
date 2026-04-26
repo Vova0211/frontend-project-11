@@ -96,11 +96,9 @@ export default function () {
     templates: {
       posts: {
         box: document.getElementById('postsBox'),
-        item: document.getElementById('postItem'),
       },
       feeds: {
         box: document.getElementById('feedsBox'),
-        item: document.getElementById('feedItem'),
       },
     },
     modal: document.getElementById('modal'),
